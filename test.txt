@@ -1,1 +1,32 @@
-dscfdas
+package com.codebrains.io.examples;
+import java.io.*;
+   public class DeSerializeDemo
+   {
+      public static void main(String [] args)
+      {
+         Employee e = null;
+         try
+         {
+            FileInputStream fis = new FileInputStream("d:/employee.txt");
+            ObjectInputStream ois = new ObjectInputStream(fis);
+            e = (Employee) ois.readObject();
+           System.out.println("Deserialized Employee...");
+        System.out.println("Name: " + e.name);
+        System.out.println("Address: " + e.address);
+        System.out.println("SSN: " + e.SSN);
+        System.out.println("Number: " + e.number);
+            ois.close();
+            fis.close();
+        }catch(IOException i)
+        {
+            i.printStackTrace();
+            return;
+        }catch(ClassNotFoundException c)
+        {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return;
+        }
+    }
+}
+
